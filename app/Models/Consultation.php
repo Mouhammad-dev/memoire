@@ -14,6 +14,7 @@ class Consultation extends Model
      *
      * @var array
      */
+
     protected $fillable = [
         'user_id',
         'symptomes',
@@ -23,9 +24,7 @@ class Consultation extends Model
         'temperature',
         'pouls',
         'frequence_respiratoire',
-        'type_consultations',
-        'created_at',
-        'update_at'
+        'type_consultations'
     ];
 
     /**

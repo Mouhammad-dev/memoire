@@ -62,9 +62,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard', 'as' =>
     Route::resource('pathologie', App\Http\Controllers\PathologieController::class);
 
     Route::resource('medicament', App\Http\Controllers\MedicamentController::class);
+
 });
 
 Route::resource('consultation', App\Http\Controllers\ConsultationController::class);
+Route::get('create,{user}', [ConsultationController::class, "create"])->name('create');
+//Route::get('consulationcreate', [ConsultationController::class, "create"]);
 
 Route::get('dashboard/patient', function () {
     $patients = User::where('is_patient', true)->latest()->get();
@@ -91,7 +94,6 @@ Route::get('dashboard/consultation/create', function () {
 Route::get('dashboard/consultation/edit', function () {
     return view('consultation.edit');
 })->name('consultationEdit');
-
 
 Route::post('dashboard/docteur/store', function (Request $request) {
     $request->validate([
@@ -122,6 +124,7 @@ Route::delete('dashboard/docteur/destroy/{user}', function (Request $request, Us
         return redirect()->route('docteurs');
     }
 })->name('docteurDestroy');
+
 
 Route::fallback(function () {
     return view('welcome');

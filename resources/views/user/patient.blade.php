@@ -11,9 +11,10 @@
         </div>
 
         <div class="row">
-            {{-- <div class="col d-flex justify-content-start">
+            <div class="col d-flex justify-content-start">
                 <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Recherche">
-            </div> --}}
+                <button type="submit" class="btn ml-2" style="background:#0077fffd; color: white;">Rechercher</button>
+            </div>
             <div class="col d-flex justify-content-end">
                 <a href=" {{ route('dashboard.user.create') }} " class="btn btn-primary">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>

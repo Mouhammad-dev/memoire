@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
 class UserController extends Controller
 {
@@ -74,6 +75,7 @@ class UserController extends Controller
             return view('dossier.create', compact('user'));
         }
         $consultations = Consultation::where('user_id', $user->id)->get();
+
 
         return view('user.show', compact('user', 'dossier', 'consultations'));
     }

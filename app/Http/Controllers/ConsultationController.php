@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ConsultationStoreRequest;
-use App\Http\Requests\ConsultationUpdateRequest;
+
 use App\Models\Consultation;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,9 +26,10 @@ class ConsultationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function create(Request $request)
+    public function create(Request $request,User $user)
     {
-        return view('consultation.create');
+
+        return view('consultation.create', compact('user'));
     }
 
     /**
@@ -37,20 +37,10 @@ class ConsultationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(ConsultationStoreRequest $request)
+    public function store(Request $request)
     {
-        $request->validate([
-            'user_id' => 'required',
-            'symptomes' => 'required',
-            'medicament_prescrits' => 'required',
-            'historique_maladie' => 'required',
-            'tension_arterielle' => 'required',
-            'temperature' => 'required',
-            'pouls' => 'required',
-            'frequence_respiratoire' => 'required',
-            'type_consultations' => 'required'
-        ]);
-        // dd($request);
+
+       // dd($request);
         $cons = new Consultation();
         $cons->user_id = $request->user_id;
         $cons->symptomes = $request->symptomes;
@@ -61,15 +51,15 @@ class ConsultationController extends Controller
         $cons->pouls = $request->pouls;
         $cons->frequence_respiratoire = $request->frequence_respiratoire;
         $cons->type_consultations = $request->type_consultations;
-        $cons->created_by = auth()->user()->email;
+        //$cons->created_by = auth()->user()->email;
         $cons->save();
+        $user= $request->user_id;
 
+        // $consultations = Consultation::create($request);
 
-        $consultations = Consultation::create($request);
+        // $request->session()->flash('consultation.id', $consultations->id);
 
-        $request->session()->flash('consultation.id', $consultations->id);
-
-        return redirect()->route('consultation.create');
+        return redirect()->route('dashboard.user.show', compact('user'));
     }
 
     /**
@@ -100,7 +90,7 @@ class ConsultationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(ConsultationUpdateRequest $request, Consultation $consultations)
+    public function update(Request $request, Consultation $consultations)
     {
         $consultations->update($request->validated());
 
@@ -115,10 +105,10 @@ class ConsultationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(Request $request, Consultation $consultations)
+    public function destroy(Request $request, Consultation $consultation)
     {
-        $consultations->delete();
+        $consultation->delete();
 
-        return redirect()->route('dashboard.consultation.index');
+        return redirect()->route('dashboard.consultation.index')->with('status', "Consultation supprimée avec succès");
     }
 }

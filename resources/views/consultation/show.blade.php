@@ -52,7 +52,7 @@
                                                         Fréquence Respiratoire
                                                     </th>
 
-                                                    <th>
+                                                     <th>
                                                         Type de consultation
                                                     </th>
 
@@ -60,25 +60,25 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($consultations as $consultations)
+                                                @forelse ($consultations as $consultation)
                                                     <tr>
-                                                        <td scope="row"> {{ $consultations->id }} </td>
-                                                        <td> {{ $consultations->symptomes }}</td>
-                                                        <td> {{ $consultations->medicament_prescrits }}</td>
-                                                        <td> {{ $consultations->historique_maladie }} </td>
-                                                        <td> {{ $consultations->tension_arterielle }} </td>
-                                                        <td> {{ $consultations->temperature }} </td>
-                                                        <td> {{ $consultations->pouls }} </td>
-                                                        <td> {{ $consultations->frequence_respiratoire }} </td>
-                                                        <td> {{ $consultations->type_consultations }} </td>
-                                                        <td> {{ $consultations->created_at }} </td>
-                                                        <td> {{ $consultations->updated_at }} </td>
-                                                        <td>
+                                                        <td scope="row"> {{ $consultation->id }} </td>
+                                                        <td> {{ $consultation->user_id }}</td>
+                                                        <td> {{ $consultation->symptomes }}</td>
+                                                        <td> {{ $consultation->medicament_prescrits }}</td>
+                                                        <td> {{ $consultation->historique_maladie }} </td>
+                                                        <td> {{ $consultation->tension_arterielle }} </td>
+                                                        <td> {{ $consultation->temperature }} </td>
+                                                        <td> {{ $consultation->pouls }} </td>
+                                                        <td> {{ $consultation->frequence_respiratoire }} </td>
+                                                        <td> {{ $consultation->type_consultations }} </td>
+
+                                                        {{-- <td>
                                                             <a href=" {{ route('consultation.show', compact('consultations')) }} "
                                                                 class="btn btn-outline-primary">
                                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                                             </a>
-                                                        </td>
+                                                        </td> --}}
 
                                                         <td>
                                                             <a href=" {{ route('consultation.edit', compact('consultations')) }} "

@@ -32,9 +32,7 @@ http://www.tooplate.com/view/2098-health
      <!-- PRE LOADER -->
      <section class="preloader">
           <div class="spinner">
-
                <span class="spinner-rotate"></span>
-
           </div>
      </section>
 
@@ -43,11 +41,9 @@ http://www.tooplate.com/view/2098-health
      <header>
           <div class="container">
                <div class="row">
-
                     <div class="col-md-4 col-sm-5">
                          <p>Bienvenue chez un professionnel de la santé</p>
                     </div>
-
                     <div class="col-md-8 col-sm-7 text-align-right">
                          <span class="phone-icon"><i class="fa fa-phone"></i> 33 951 56 65</span>
                          <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 6:00 - 23:00 (Lundi - Dimanche)</span>
@@ -84,12 +80,13 @@ http://www.tooplate.com/view/2098-health
                             @if (Route::has('login'))
                                 @auth
                                     {{-- <a href="{{ url('/dashboard') }}" class="btn btn-primary ml-lg-3">Tableau de Bord</a> --}}
+
                                 @else
                                     <a href="{{ route('login') }}" type="submit" class="btn ml-2" style="background: #BEFF33;">Se Connecter</a>
 
-                                    {{-- @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="btn btn-primary ml-lg-3">S'inscrire</a>
-                                    @endif --}}
+                                    @if (Route::has('register'))
+                                        {{-- <a href="{{ route('register') }}" class="btn btn-primary ml-lg-3">S'inscrire</a> --}}
+                                    @endif
                                 @endauth
                             @endif
                         </li>
@@ -138,7 +135,6 @@ http://www.tooplate.com/view/2098-health
      <section id="about">
           <div class="container">
                <div class="row">
-
                     <div class="col-md-6 col-sm-6">
                          <div class="about-info">
                               <h2 class="wow fadeInUp" data-wow-delay="0.6s">Bienvenue dans <i class="fa fa-stethoscope" aria-hidden="true"></i>
@@ -149,7 +145,6 @@ http://www.tooplate.com/view/2098-health
                               </div>
                          </div>
                     </div>
-
                </div>
           </div>
      </section>

@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+    $userid=$user;
+@endphp
     <div class="container">
         <div class="row mt-5">
             <div class="col">
@@ -48,7 +51,7 @@
                                                         </h5>
                                                     </div>
                                                 </div>
-                                                {{-- <div class="row mt-5">
+                                            {{-- <div class="row mt-5">
                                                     <div class="col">
                                                         <a href="  " class="btn btn-warning">Modifier les informations
                                                             personnelles</a>
@@ -91,7 +94,7 @@
                                                             CNI: {{ $dossier->cni }}
                                                         </h5>
                                                     </div>
-                                                    <div class="col">
+                                                    {{-- <div class="col">
                                                         <h5>
                                                             État dossier:
                                                             @if ($dossier->enabled)
@@ -101,7 +104,7 @@
                                                                     class="btn btn-danger">Désactivé</button>
                                                             @endif
                                                         </h5>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <div class="row mt-5">
                                                     <div class="col">
@@ -151,7 +154,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="d-flex justify-content-end">
-                                            <a href=" {{ route('consultation.create') }} "
+                                            <a href=" {{ route('create',$user->id )}} "
                                                 class="btn btn-primary">
                                                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
                                                 Nouvelle Consultation
@@ -204,6 +207,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {{-- @dd($consultations) --}}
                                                 @forelse ($consultations as $consultation)
                                                     <tr>
                                                         <td scope="row"> {{ $consultation->id }} </td>
@@ -215,26 +219,35 @@
                                                         <td> {{ $consultation->pouls }} </td>
                                                         <td> {{ $consultation->frequence_respiratoire }} </td>
                                                         <td> {{ $consultation->type_consultations }} </td>
-                                                        <td> {{ $consultation->created_at }} </td>
-                                                        <td> {{ $consultation->updated_at }} </td>
-                                                        <td>
+
+                                                        {{-- <td>
                                                             <a href=" {{ route('consultation.show', compact('consultation')) }} "
                                                                 class="btn btn-outline-primary">
                                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                                             </a>
-                                                        </td>
+                                                        </td> --}}
 
                                                         <td>
-                                                            <a href=" {{ route('consultation.edit', compact('consultation')) }} "
+                                                            <a href=" {{ route('consultation.edit', ['consultation' =>$consultation->id]) }} "
                                                                 class="btn btn-outline-warning">
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                                             </a>
                                                         </td>
 
                                                         <td>
-                                                            <button type="button" class="btn btn-outline-danger">
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </button>
+                                                            {{-- <a href="{{ route('consultation.destroy',['consultation' =>$consultation->id]) }}"
+                                                            class="btn btn-outline-danger" method="post" >
+                                                            @csrf
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </a> --}}
+
+                                                        <form action=" {{ route('consultation.destroy',['consultation' =>$consultation->id]) }} "
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <input type="submit" value="Supprimer" class="fa fa-trash  btn btn-outline-danger" >
+
+                                                        </form>
                                                         </td>
                                                     @empty
                                                         <p>Aucune consultation pour ce patient</p>

@@ -9,9 +9,10 @@
                         <i class="fa fa-plus-circle" aria-hidden="true"></i>
                         Nouvelle consultation
                     </div>
-                    <div class="card-body">         
-                        <form action=" {{ route('consultation.store') }} " method="get">
+                    <div class="card-body">
+                        <form action=" {{ route('consultation.store') }} " method="post">
                             @csrf
+                            <input type="hidden" value="{{$user->id}}" name="user_id">
 
                             <div class="row mt-5">
                                 <div class="col">
@@ -85,7 +86,6 @@
                                 </div>
                             </div>
 
-
                             <div class="row mt-5">
                                 <div class="col">
                                     <button type="submit" class="btn btn-outline-primary">
@@ -99,5 +99,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 @endsection

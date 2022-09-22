@@ -34,7 +34,7 @@ class DossierController extends Controller
      * @param \App\Http\Requests\DossierStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) 
     {
         $dossier = new Dossier();
         $dossier->numero = uniqid();

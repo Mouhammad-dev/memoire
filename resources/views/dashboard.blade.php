@@ -4,12 +4,106 @@
     <div class="container-fluid">
         <div class="row">
             <div class="card">
-                <div class="col d-flex justify-content-end">
-                    Date et heure : {{ date('h:i:sa -- d/m/Y') }}
+                <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
+
+                <div class="datetime">
+                  <div class="time"></div>
+                  <div class="date"></div>
                 </div>
+                <style>
+                    body {
+                        background: white;
+                        text-align: center;
+                        }
+
+                        .datetime {
+                        font-size: 5px;
+                        padding: 24px;
+                        color: black;
+                        background: white;
+                        box-shadow: 0 0 10px white;
+                        border-radius: 4px;
+                        border-right: 10px white solid;
+                        width: 400px;
+                        font-weight: 500;
+                        font-family: "Inter", sans-serif;
+                        }
+
+                        .time {
+                        font-size: 3em;
+                        color: #BEFF33;;
+                        }
+
+                        .date {
+                        margin-top: 12px;
+                        font-size: 1.75em;
+                        }
+
+                </style>
+                <script>
+                    const timeElement = document.querySelector(".time");
+                    const dateElement = document.querySelector(".date");
+
+                    /**
+                     * @param {Date} date
+                     */
+                    function formatTime(date) {
+                    const hours12 = date.getHours() % 12 || 12;
+                    const minutes = date.getMinutes();
+                    const isAm = date.getHours() < 12;
+
+                    return `${hours12.toString().padStart(2, "0")}:${minutes
+                        .toString()
+                        .padStart(2, "0")} ${isAm ? "" : ""}`;
+                    }
+
+                    /**
+                     * @param {Date} date
+                     */
+                    function formatDate(date) {
+                    const DAYS = [
+                        "Lundi",
+                        "Mardi",
+                        "Mercredi",
+                        "Jeudi",
+                        "Vendredi",
+                        "Samedi",
+                        "Dimanche"
+                    ];
+                    const MONTHS = [
+                        "Janvier",
+                        "Février",
+                        "Mars",
+                        "Avril",
+                        "Mai",
+                        "Juin",
+                        "Juillet",
+                        "Août",
+                        "Septembre",
+                        "Octobre",
+                        "Novembre",
+                        "Decembre"
+                    ];
+
+                    return `${DAYS[date.getDay()]}, ${date.getDate()}  ${
+                        MONTHS[date.getMonth()]
+                    }  ${date.getFullYear()}`;
+                    }
+
+                    setInterval(() => {
+                    const now = new Date();
+
+                    timeElement.textContent = formatTime(now);
+                    dateElement.textContent = formatDate(now);
+                    }, 200);
+
+                </script>
             </div>
         </div>
     </div>
+
     <div style="height: 100px"></div>
     <div class="container">
         @if (auth()->user()->is_docteur || auth()->user()->is_admin)

@@ -11,9 +11,10 @@
         </div>
 
         <div class="row">
-            {{-- <div class="col d-flex justify-content-start">
+            <div class="col d-flex justify-content-start">
                 <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Recherche">
-            </div> --}}
+                <button type="submit" class="btn ml-2" style="background:#0077fffd; color: white;">Rechercher</button>
+            </div>
             <div class="col d-flex justify-content-end">
                 <a href=" {{ route('consultation.create') }} " class="btn btn-primary">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -64,7 +65,7 @@
                                     Type de consultation
                                 </th>
 
-                                <th colspan="2" class="text-center">
+                                <th colspan="3" class="text-center">
                                     Actions
                                 </th>
                             </tr>
@@ -75,42 +76,42 @@
                                 {{ $id = 1 }}
                             </div>
 
-                            @forelse ($consultations as $consultations)
+                            @forelse ($consultations as $consultation)
                                 <tr>
                                     <th>
                                         {{ $id++ }}
                                     </th>
 
                                     <td>
-                                        {{ $consultations->symptomes }}
+                                        {{ $consultation->symptomes }}
                                     </td>
 
                                     <td>
-                                        {{ $consultations->medicament_prescrits }}
+                                        {{ $consultation->medicament_prescrits }}
                                     </td>
 
                                     <td>
-                                        {{ $consultations->historique_maladie }}
+                                        {{ $consultation->historique_maladie }}
                                     </td>
 
                                     <td>
-                                        {{ $consultations->tension_arterielle }}
+                                        {{ $consultation->tension_arterielle }}
                                     </td>
 
                                     <td>
-                                        {{ $consultations->temperature }}
+                                        {{ $consultation->temperature }}
                                     </td>
 
                                     <td>
-                                        {{ $consultations->pouls }}
+                                        {{ $consultation->pouls }}
                                     </td>
 
                                     <td>
-                                        {{ $consultations->frequence_respiratoire }}
+                                        {{ $consultation->frequence_respiratoire }}
                                     </td>
 
                                     <td>
-                                        {{ $consultations->type_consultations }}
+                                        {{ $consultation->type_consultations }}
                                     </td>
 
                                     <td>
@@ -121,14 +122,15 @@
                                     </td>
 
                                     <td>
-                                        <form action=" {{ route('consultation.destroy', compact('consultations')) }} "
+                                        {{-- <form action=" {{ route('consultation.destroy', compact('consultations')) }} "
                                             method="post">
                                             @csrf
                                             @method('delete')
+                                            <a href=""></a>
                                             <button type="submit" class="btn btn-outline-danger">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </button>
-                                        </form>
+                                        </form> --}}
                                     </td>
                                 </tr>
                             @empty
@@ -177,7 +179,11 @@
                                     Type de consultation
                                 </th>
 
-                                <th colspan="2" class="text-center">
+                                <th>
+                                    Patients
+                                </th>
+
+                                <th colspan="3" class="text-center">
                                     Actions
                                 </th>
                             </tr>
