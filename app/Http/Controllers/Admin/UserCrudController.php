@@ -44,7 +44,6 @@ class UserCrudController extends CrudController
         CRUD::column('name');
         CRUD::column('email');
         CRUD::column('type');
-        CRUD::column('genre');
         CRUD::column('telephone');
 
         /**
