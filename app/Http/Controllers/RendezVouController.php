@@ -14,7 +14,8 @@ class RendezVouController extends Controller
      */
     public function index()
     {
-        return view('rendez_vous.index');
+        $rvs = RendezVou::all();
+        return view('rendez_vous.index', compact('rvs'));
     }
 
     /**

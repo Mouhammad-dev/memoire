@@ -4,7 +4,7 @@
     <section id="popular-courses" class="courses">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
-                <h2>Rendez-vous ( xxx )</h2>
+                <h2>Mes Rendez-vous ( {{ count($rvs) }} )</h2>
                 <p>
                     <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button"
                         aria-expanded="false" aria-controls="collapseExample">
@@ -37,28 +37,46 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="">Libelle du document</label>
-                                            <input type="text" name="name" required id="name"
-                                                class="form-control @error('name') is-invalid @enderror"
-                                                placeholder="Algorithme et Programmation 1" aria-describedby="helpId">
-                                            @error('name')
+                                            <label for="">Date du rv</label>
+                                            <input type="date" name="date" required id="date"
+                                                class="form-control @error('date') is-invalid @enderror"
+                                                aria-describedby="helpId">
+                                            @error('date')
                                                 <small id="helpId" class="form-text text-danger">
-                                                    {{ $errors->first('name') }}
+                                                    {{ $errors->first('date') }}
                                                 </small>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="">Libelle du document</label>
-                                            <input type="text" name="name" required id="name"
-                                                class="form-control @error('name') is-invalid @enderror"
-                                                placeholder="Algorithme et Programmation 1" aria-describedby="helpId">
-                                            @error('name')
+                                            <label for="">Heure du rv</label>
+                                            <input type="time" name="heure" required id="heure"
+                                                class="form-control @error('heure') is-invalid @enderror"
+                                                aria-describedby="helpId">
+                                            @error('heure')
                                                 <small id="helpId" class="form-text text-danger">
-                                                    {{ $errors->first('name') }}
+                                                    {{ $errors->first('heure') }}
                                                 </small>
                                             @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="type">Type du rv</label>
+                                            <select class="form-select form-select-lg" name="type" id="type">
+                                                <option value="ligne">En ligne</option>
+                                                <option value="presentiel">Présentiel</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="docteur">Choisir le docteur</label>
+                                            <select class="form-select form-select-lg" name="docteur" id="docteur">
+                                                <option value="">xxx</option>
+                                                <option value="">xxx</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +94,7 @@
             </div>
 
             <div class="row mb-2" data-aos="zoom-in" data-aos-delay="100">
-                {{-- @forelse ($documents as $document) --}}
+                {{-- @forelse ($rvs as $rv) --}}
                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-2">
                     <div class="course-item">
                         <img src="../../images/about-bg.jpg" class="img-fluid" alt="...">
@@ -129,7 +147,6 @@
                 </section>
                 {{-- @endforelse --}}
             </div>
-            {{-- {{ $documents->links() }} --}}
         </div>
     </section><!-- End Popular Courses Section -->
 @endsection
