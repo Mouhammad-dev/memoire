@@ -47,18 +47,28 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Get all of the patients for the User
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function patients(): HasMany
-    {
-        return $this->hasMany(Patient::class);
-    }
-
     public function rendez_vous(): HasMany
     {
         return $this->hasMany(RendezVou::class);
+    }
+
+    /**
+     * Get all of the consultations for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function consultations(): HasMany
+    {
+        return $this->hasMany(Consultation::class);
+    }
+
+    /**
+     * Get the dossier that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function dossier(): BelongsTo
+    {
+        return $this->belongsTo(Dossier::class);
     }
 }

@@ -27,8 +27,8 @@ class CheckIfAdmin
      */
     private function checkIfUserIsAdmin($user)
     {
-        // return ($user->type == "admin");
-        return true;
+        return ($user->type == "admin" || $user->type == "docteur");
+        // return true;
     }
 
     /**

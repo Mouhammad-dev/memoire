@@ -59,8 +59,17 @@ class PatientCrudController extends CrudController
     {
         CRUD::setValidation(PatientRequest::class);
 
-        CRUD::field('user_id');
-
+        CRUD::addField([
+            'name'    => 'user_id',
+            'label'   => 'Email de l\'utilisateur ',
+            'type'    => 'select',
+            'entity'    => 'patient',
+            'model'     => "App\Models\User",
+            'attribute' => 'email',
+            'options' => (function ($query) {
+                return $query->where('type', 'responsable')->get();
+            }),
+        ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

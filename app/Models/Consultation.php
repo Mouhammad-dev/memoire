@@ -56,6 +56,11 @@ class Consultation extends Model
         return $this->hasMany(Medicament::class);
     }
 
+    public function consultations(): HasMany
+    {
+        return $this->hasMany(Consultation::class);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES
