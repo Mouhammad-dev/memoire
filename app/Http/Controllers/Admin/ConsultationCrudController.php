@@ -47,6 +47,7 @@ class ConsultationCrudController extends CrudController
         CRUD::column('poids');
         CRUD::column('glycemie');
 
+
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -71,6 +72,33 @@ class ConsultationCrudController extends CrudController
         CRUD::field('frequence_respiratoire');
         CRUD::field('poids');
         CRUD::field('glycemie');
+        CRUD::addField([
+            'name'    => 'pathologie_id',
+            'label'   => 'Pathologie ',
+            'type'    => 'select',
+            'entity'    => 'pathologies',
+            'model'     => "App\Models\Pathologie",
+            'attribute' => 'name',
+        ]);
+        CRUD::addField([
+            'name'    => 'medicament_id',
+            'label'   => 'Medicament ',
+            'type'    => 'select',
+            'entity'    => 'medicaments',
+            'model'     => "App\Models\Medicament",
+            'attribute' => 'name',
+        ]);
+        CRUD::addField([
+            'name'    => 'user_id',
+            'label'   => 'Email du patient ',
+            'type'    => 'select',
+            'entity'    => 'user',
+            'model'     => "App\Models\User",
+            'attribute' => 'email',
+            'options' => (function ($query) {
+                return $query->where('type', 'patient')->get();
+            }),
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('glycemie');
             $table->foreignIdFor(Pathologie::class);
             $table->foreignIdFor(Medicament::class);
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }

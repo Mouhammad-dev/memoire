@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('heure');
             $table->string('type');
             $table->string('reunion_id');
-            $table->foreignIdFor(Patient::class);
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });

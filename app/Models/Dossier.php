@@ -41,9 +41,9 @@ class Dossier extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function patient(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(User::class);
     }
 
     /*

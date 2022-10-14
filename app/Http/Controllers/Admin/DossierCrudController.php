@@ -61,12 +61,23 @@ class DossierCrudController extends CrudController
     {
         CRUD::setValidation(DossierRequest::class);
 
-        CRUD::field('numero');
+        CRUD::field('numero')->type('hidden')->value(uniqid());
         CRUD::field('date_naissance');
         CRUD::field('cni');
         CRUD::field('antecedent_medicaux');
         CRUD::field('antecedent_chirugicaux');
         CRUD::field('antecedent_familiaux');
+        CRUD::addField([
+            'name'    => 'user_id',
+            'label'   => 'Email du patient ',
+            'type'    => 'select',
+            'entity'    => 'user',
+            'model'     => "App\Models\User",
+            'attribute' => 'email',
+            'options' => (function ($query) {
+                return $query->where('type', 'patient')->get();
+            }),
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

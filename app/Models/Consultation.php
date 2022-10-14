@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Consultation extends Model
@@ -56,9 +57,9 @@ class Consultation extends Model
         return $this->hasMany(Medicament::class);
     }
 
-    public function consultations(): HasMany
+    public function user(): BelongsTo
     {
-        return $this->hasMany(Consultation::class);
+        return $this->belongsTo(User::class);
     }
 
     /*

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('antecedent_medicaux');
             $table->text('antecedent_chirugicaux');
             $table->text('antecedent_familiaux');
-            $table->foreignIdFor(Patient::class);
+            $table->foreignIdFor(User::class);
             $table->timestamps();
         });
     }

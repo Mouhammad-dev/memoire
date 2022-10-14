@@ -64,6 +64,17 @@ class RendezVouCrudController extends CrudController
         CRUD::field('heure');
         CRUD::field('type');
         CRUD::field('reunion_id');
+        CRUD::addField([
+            'name'    => 'user_id',
+            'label'   => 'Email du patient ',
+            'type'    => 'select',
+            'entity'    => 'user',
+            'model'     => "App\Models\User",
+            'attribute' => 'email',
+            'options' => (function ($query) {
+                return $query->where('type', 'patient')->get();
+            }),
+        ]);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

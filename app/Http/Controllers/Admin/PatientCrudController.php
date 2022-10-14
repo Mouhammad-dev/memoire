@@ -26,9 +26,9 @@ class PatientCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Patient::class);
+        CRUD::setModel(\App\Models\User::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/patient');
-        CRUD::setEntityNameStrings('patient', 'patients');
+        CRUD::setEntityNameStrings('patient', 'Patients');
     }
 
     /**
@@ -39,9 +39,11 @@ class PatientCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('user_id');
-        $this->crud->setColumnDetails('user_id', ['attribute' => 'name']);
-        $this->crud->setColumnDetails('user_id', ['attribute' => 'telephone']);
+        CRUD::column('name');
+        CRUD::column('email');
+        CRUD::column('telephone');
+
+        $this->crud->removeAllButtons();
         /**
          * Columns can be defined using the fluent syntax or array syntax:
          * - CRUD::column('price')->type('number');
@@ -59,17 +61,6 @@ class PatientCrudController extends CrudController
     {
         CRUD::setValidation(PatientRequest::class);
 
-        CRUD::addField([
-            'name'    => 'user_id',
-            'label'   => 'Email de l\'utilisateur ',
-            'type'    => 'select',
-            'entity'    => 'patient',
-            'model'     => "App\Models\User",
-            'attribute' => 'email',
-            'options' => (function ($query) {
-                return $query->where('type', 'responsable')->get();
-            }),
-        ]);
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');
