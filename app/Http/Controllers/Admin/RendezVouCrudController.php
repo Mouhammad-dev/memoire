@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\RendezVouRequest;
+use App\Mail\SendRVNotificationMail;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class RendezVouCrudController
@@ -76,6 +78,11 @@ class RendezVouCrudController extends CrudController
             }),
         ]);
 
+        $date = CRUD::field('date');
+        $heure = CRUD::field('heure');
+        $reunionId = CRUD::field('reunion_id');
+
+        Mail::to('janticipe0101@gmail.com')->send(new SendRVNotificationMail($date, $heure, $reunionId));
         /**
          * Fields can be defined using the fluent syntax or array syntax:
          * - CRUD::field('price')->type('number');

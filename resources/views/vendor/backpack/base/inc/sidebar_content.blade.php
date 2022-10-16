@@ -17,6 +17,8 @@
             Rendez Vous</a></li>
 @endif
 @if (backpack_user()->type == 'docteur')
+    <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="la la-home nav-icon"></i>
+            {{ trans('backpack::base.dashboard') }}</a></li>
     <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dossier') }}"><i
                 class="nav-icon la la-book-medical"></i>
             Dossiers</a></li>
